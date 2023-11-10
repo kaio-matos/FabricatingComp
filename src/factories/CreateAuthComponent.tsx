@@ -1,6 +1,6 @@
 import { type FC, type PropsWithChildren } from "react";
-import { useGlobalState } from "../../contexts/global/index";
-import { IUserResource } from "../../services/auth/resources/user";
+import { useGlobalState } from "../contexts/global/index";
+import { IUserResource } from "../services/auth/resources/user";
 
 const FallbackComponent: FC = () => (
     <p>
@@ -13,7 +13,7 @@ export function CreateAuthComponent<Props extends object>(
         PropsWithChildren<Props> & {
             user: IUserResource;
         }
-    >
+    >,
 ) {
     const InjectedComponent: FC<Props> = (props) => {
         const state = useGlobalState();

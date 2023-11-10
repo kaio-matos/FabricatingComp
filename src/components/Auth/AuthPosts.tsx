@@ -1,6 +1,6 @@
 import { useGlobalState } from "../../contexts/global";
 import { useMount } from "../../hooks/useMount";
-import { CreateAuthComponent } from "../factories/CreateAuthComponent";
+import { CreateAuthComponent } from "../../factories/CreateAuthComponent";
 
 export const AuthPosts = CreateAuthComponent(function AuthPosts({ user }) {
     const { POSTS } = useGlobalState();

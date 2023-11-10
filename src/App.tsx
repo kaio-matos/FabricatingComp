@@ -1,22 +1,28 @@
-import { useState } from "react";
-import "./App.css";
-import { AuthPosts } from "./components/Auth/AuthPosts";
-import { PublicPosts } from "./components/Public/PublicPosts";
 import { GlobalContextProvider } from "./contexts/global/global.context";
+import { Login } from "./pages/Login";
+import { AuthDashboard } from "./pages/Auth/AuthDashboard";
+import { CreatePublicComponent } from "./factories/CreatePublicComponent";
+import { ReactNode } from "react";
+import { app_routes } from "./pages/routes";
+
+const CurrentPage = CreatePublicComponent(() => {
+    const r = app_routes;
+
+    const pages: Record<string, ReactNode> = {
+        [r.login]: <Login />,
+        [r.auth.dashboard]: <AuthDashboard />,
+    };
+
+    return pages[window.location.pathname] || <p>Page not found</p>;
+});
 
 function App() {
-    const [isProductsPageActive, setIsProductsPageActive] = useState(false);
-
     return (
         <>
             <GlobalContextProvider>
-                <div
-
-                    className="grid grid-cols-2 gap-4 text-left w-full"
-                >
-                    <button onClick={() => setIsProductsPageActive((v) => !v)}>
-                        See our products
-                    </button>
+                <CurrentPage />
+                {/* <div className="grid w-full grid-cols-2 gap-4 text-left">
+                    <button>See our products</button>
                     <div>
                         <h1>Authenticated Area</h1>
 
@@ -28,7 +34,7 @@ function App() {
 
                         <PublicPosts />
                     </div>
-                </div>
+                </div> */}
             </GlobalContextProvider>
         </>
     );

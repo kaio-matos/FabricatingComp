@@ -3,7 +3,7 @@ import { useMount } from "./useMount";
 
 export function useMountAsyncState<T, InitialState>(
     request: () => Promise<T>,
-    initialState: InitialState
+    initialState: InitialState,
 ) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<unknown>();
@@ -29,7 +29,7 @@ type Fn = (...args: any[]) => any;
 
 export function useAsyncState<Request extends Fn, InitialState>(
     request: Request,
-    initialState: InitialState
+    initialState: InitialState,
 ) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<unknown>();
@@ -39,7 +39,7 @@ export function useAsyncState<Request extends Fn, InitialState>(
 
     function execute(...params: Parameters<Request>) {
         setIsLoading(true);
-        request(...params)
+        return request(...params)
             .then(setState)
             .catch(setError)
             .finally(() => setIsLoading(false));

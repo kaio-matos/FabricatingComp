@@ -1,5 +1,5 @@
 import { useMount } from "../../hooks/useMount";
-import { CreatePublicComponent } from "../factories/CreatePublicComponent";
+import { CreatePublicComponent } from "../../factories/CreatePublicComponent";
 
 export const PublicPosts = CreatePublicComponent(function PublicPosts({
     state,
@@ -8,28 +8,12 @@ export const PublicPosts = CreatePublicComponent(function PublicPosts({
 
     return (
         <div className="flex w-full flex-col gap-4">
-            <div className="flex gap-4">
-                <p>
-                    {state.USER.user
-                        ? `Bem vindo ${state.USER.user.firstName}!`
-                        : "Bem vindo!"}
-                </p>
-                <button
-                    onClick={() => {
-                        state.USER.user
-                            ? state.USER.logout.execute()
-                            : state.USER.login.execute();
-                    }}
-                >
-                    {state.USER.login.isLoading
-                        ? "Logging in..."
-                        : state.USER.logout.isLoading
-                        ? "Logging out..."
-                        : state.USER.user
-                        ? "Logout"
-                        : "Login"}
-                </button>
-            </div>
+            <p>
+                {state.USER.user
+                    ? `Bem vindo ${state.USER.user.firstName}!`
+                    : "Bem vindo!"}
+            </p>
+
             <br />
 
             {state.POSTS.getPublic.isLoading && "Loading..."}
