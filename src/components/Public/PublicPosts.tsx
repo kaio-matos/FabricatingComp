@@ -7,20 +7,8 @@ export const PublicPosts = CreatePublicComponent(function PublicPosts({
     useMount(state.POSTS.getPublic.execute);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                width: "100%",
-            }}
-        >
-            <div
-                style={{
-                    display: "flex",
-                    gap: "1rem",
-                }}
-            >
+        <div className="flex w-full flex-col gap-4">
+            <div className="flex gap-4">
                 <p>
                     {state.USER.user
                         ? `Bem vindo ${state.USER.user.firstName}!`
@@ -46,15 +34,7 @@ export const PublicPosts = CreatePublicComponent(function PublicPosts({
 
             {state.POSTS.getPublic.isLoading && "Loading..."}
 
-            <div
-                style={{
-                    height: "50vh",
-                    overflow: "auto",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
+            <div className="flex h-[50vh] flex-col gap-4 overflow-auto">
                 {!state.USER.user &&
                     state.POSTS.getPublic.state.map(
                         ({ id, title, by, text }) => {
@@ -72,7 +52,7 @@ export const PublicPosts = CreatePublicComponent(function PublicPosts({
                                     <p>{text}</p>
                                 </article>
                             );
-                        }
+                        },
                     )}
             </div>
         </div>

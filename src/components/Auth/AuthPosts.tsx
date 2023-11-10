@@ -8,36 +8,17 @@ export const AuthPosts = CreateAuthComponent(function AuthPosts({ user }) {
     useMount(() => POSTS.getForUser.execute(user.id));
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                width: "100%",
-            }}
-        >
+        <div className="flex w-full flex-col gap-4">
             <h2>POSTS</h2>
 
             {POSTS.getForUser.isLoading && "Loading..."}
 
-            <div
-                style={{
-                    height: "65vh",
-                    overflow: "auto",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                }}
-            >
+            <div className="flex h-[65vh] flex-col gap-4 overflow-auto">
                 {POSTS.getForUser.state.map(({ id, title, by, text }) => {
                     return (
                         <article
                             key={id}
-                            style={{
-                                textAlign: "left",
-                                border: "1px solid #999999",
-                                padding: "1rem",
-                            }}
+                            className="border border-gray-400 text-left"
                         >
                             <h3>{title}</h3>
                             <small>Author: {by}</small>

@@ -11,13 +11,8 @@ function App() {
         <>
             <GlobalContextProvider>
                 <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "1rem",
-                        textAlign: "left",
-                        width: "100%",
-                    }}
+
+                    className="grid grid-cols-2 gap-4 text-left w-full"
                 >
                     <button onClick={() => setIsProductsPageActive((v) => !v)}>
                         See our products
