@@ -1,28 +1,38 @@
-# React + TypeScript + Vite
+# FabricatingComp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Testing how factories can be beneficial for components classification and explicit importing data from a global state by injecting it with a wrapper via props.
 
-Currently, two official plugins are available:
+This can help avoid multiple checks to make typescript happy if for example we have some part of the application that an user has to be with logged in data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Example:
 
-## Expanding the ESLint configuration
+```tsx
+function SomeAuthenticatedComponent() {
+    const { user } = useGlobalState();
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    if (!user) {
+        return <div>Not authenticated</div>;
+    }
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+    return <div>{user.name}</div>;
+}
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# FabricatingComp
+Usually we have to check or just ignore the possibility of some data not being available in each authenticated component.
+
+But if we create a factory for this we can avoid this type of checks by injecting with props
+
+```tsx
+const SomeAuthenticatedComponent = createAuthComponent<{ title: string }>(
+    function SomeAuthenticatedComponent({ user, title }) {
+        return (
+            <div>
+                <h1>{title}</h1>
+                <p>{user.name}</p>
+            </div>
+        );
+    }
+);
+```
+
+### This is just a test.
