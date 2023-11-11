@@ -15,7 +15,7 @@ export function CreateAuthComponent<Props extends object>(
         }
     >,
 ) {
-    const InjectedComponent: FC<Props> = (props) => {
+    const InjectedComponent: FC<PropsWithChildren<Props>> = (props) => {
         const state = useGlobalState();
         const user = state.USER.user;
 

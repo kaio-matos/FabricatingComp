@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, ReactNode, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface IProps {
     label?: ReactNode;
@@ -20,8 +21,11 @@ export function Input(props: IProps & IAttributes) {
             }`}
         >
             <input
-                className="w-full outline-none transition-all"
                 {...attrs}
+                className={twMerge(
+                    "w-full outline-none transition-all",
+                    attrs.className,
+                )}
                 type={type}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}

@@ -1,11 +1,12 @@
 import { CreateAuthComponent } from "../../factories/CreateAuthComponent";
+import { AuthLayout } from "./AuthLayout";
 
 export const AuthDashboard = CreateAuthComponent(function AuthDashboard({
     user,
 }) {
     return (
-        <div className="flex h-full w-full flex-col gap-4 bg-slate-600">
-            <h2>Olá {user.firstName}</h2>
-        </div>
+        <AuthLayout title="Dashboard" className="p-10">
+            <p>Yes your name is {user.firstName}</p>
+        </AuthLayout>
     );
 });
