@@ -21,20 +21,6 @@ function App() {
         <>
             <GlobalContextProvider>
                 <CurrentPage />
-                {/* <div className="grid w-full grid-cols-2 gap-4 text-left">
-                    <button>See our products</button>
-                    <div>
-                        <h1>Authenticated Area</h1>
-
-                        <AuthPosts />
-                    </div>
-
-                    <div>
-                        <h1>Public Area</h1>
-
-                        <PublicPosts />
-                    </div>
-                </div> */}
             </GlobalContextProvider>
         </>
     );

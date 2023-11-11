@@ -1,33 +1,47 @@
+import { useState } from "react";
 import { useAsyncState } from "../../../hooks/useAsyncState";
 import { CommerceService } from "../../../services";
+import { Product } from "../../../services/products/resources/product";
 
 export function useProductsService() {
+    const [products, setProducts] = useState<Product[]>([]);
+
     return {
+        products,
+
         index: useAsyncState(
-            CommerceService.Products.index.bind(CommerceService.Products),
-            []
+            async (
+                ...args: Parameters<typeof CommerceService.Products.index>
+            ) => {
+                const { products } = await CommerceService.Products.index(
+                    ...args,
+                );
+                await new Promise((res) => setTimeout(res, 1000));
+                setProducts(products);
+            },
+            [],
         ),
         indexByCategory: useAsyncState(
             CommerceService.Products.indexByCategory.bind(
-                CommerceService.Products
+                CommerceService.Products,
             ),
-            []
+            [],
         ),
         get: useAsyncState(
             CommerceService.Products.get.bind(CommerceService.Products),
-            null
+            null,
         ),
         create: useAsyncState(
             CommerceService.Products.create.bind(CommerceService.Products),
-            null
+            null,
         ),
         deleteProduct: useAsyncState(
             CommerceService.Products.delete.bind(CommerceService.Products),
-            null
+            null,
         ),
         search: useAsyncState(
             CommerceService.Products.search.bind(CommerceService.Products),
-            []
+            [],
         ),
     };
 }

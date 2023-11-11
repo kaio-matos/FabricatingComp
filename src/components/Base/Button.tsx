@@ -15,7 +15,7 @@ export function Button(props: IProps & IAttributes) {
         <button
             {...attrs}
             className={twMerge([
-                "rounded-md bg-blue-600 p-4 transition-all hover:bg-blue-700 focus:ring focus:ring-blue-300",
+                "rounded-md bg-blue-600 p-4 text-white transition-all hover:bg-blue-700 focus:ring focus:ring-blue-300",
                 loading && "animate-pulse",
                 attrs.className,
             ])}

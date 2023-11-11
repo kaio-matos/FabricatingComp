@@ -1,5 +1,6 @@
 import { InputHTMLAttributes, ReactNode, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { Button } from "./Button";
 
 interface IProps {
     label?: ReactNode;
@@ -31,13 +32,13 @@ export function Input(props: IProps & IAttributes) {
                 onBlur={() => setIsFocused(false)}
             />
             {isPasswordType(attrs.type) && (
-                <button
+                <Button
                     onClick={() =>
                         setType(isPasswordType(type) ? "text" : "password")
                     }
                 >
                     Visible
-                </button>
+                </Button>
             )}
         </div>
     );

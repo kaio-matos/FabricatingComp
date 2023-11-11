@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 #root {
-    @apply h-screen w-screen;
+    @apply h-screen w-screen overflow-auto;
 }

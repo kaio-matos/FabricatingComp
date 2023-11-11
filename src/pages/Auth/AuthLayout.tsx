@@ -31,7 +31,7 @@ export const AuthLayout = CreateAuthComponent<{
                     <Button>{user.firstName}</Button>
                 </header>
             </div>
-            <section className="flex flex-grow">
+            <section className="flex flex-grow overflow-auto">
                 <nav
                     className={`max-w-[14rem] bg-slate-800 py-4 transition-all duration-[600ms]  ${
                         isNavActive ? "w-full px-10" : "w-0 px-0"
@@ -62,7 +62,9 @@ export const AuthLayout = CreateAuthComponent<{
                     </div>
                 </nav>
 
-                <main className={`flex-grow ${className}`}>{children}</main>
+                <main className={`flex-grow overflow-auto ${className}`}>
+                    {children}
+                </main>
             </section>
         </div>
     );

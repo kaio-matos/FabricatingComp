@@ -3,9 +3,11 @@ import { useGlobalState } from "../contexts/global/index";
 
 export function CreatePublicComponent<Props extends object>(
     Component: FC<
-        PropsWithChildren<Props> & {
-            state: ReturnType<typeof useGlobalState>;
-        }
+        PropsWithChildren<
+            Props & {
+                state: ReturnType<typeof useGlobalState>;
+            }
+        >
     >,
 ) {
     const InjectedComponent: FC<Props> = (props) => {

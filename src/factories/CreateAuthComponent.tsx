@@ -16,9 +16,11 @@ const FallbackComponent: FC = () => (
 
 export function CreateAuthComponent<Props extends object>(
     Component: FC<
-        PropsWithChildren<Props> & {
-            user: IUserResource;
-        }
+        PropsWithChildren<
+            Props & {
+                user: IUserResource;
+            }
+        >
     >,
 ) {
     const InjectedComponent: FC<PropsWithChildren<Props>> = (props) => {
