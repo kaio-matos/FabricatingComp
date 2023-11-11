@@ -2,15 +2,18 @@ import { useState } from "react";
 
 import { Button } from "../../components/Base/Button";
 import { CreateAuthComponent } from "../../factories/CreateAuthComponent";
+import { useGlobalState } from "../../contexts/global";
+import { app_routes } from "../routes";
 
 export const AuthLayout = CreateAuthComponent<{
     title: string;
     className?: string;
 }>(function AuthLayout({ title, className, user, children }) {
     const [isNavActive, setIsNavActive] = useState(false);
+    const { USER } = useGlobalState();
 
     const routes = {
-        "/auth/dashboard": "Dashboard",
+        [app_routes.auth.dashboard]: "Dashboard",
     };
 
     return (
@@ -35,18 +38,27 @@ export const AuthLayout = CreateAuthComponent<{
                     }`}
                 >
                     <div
-                        className={`transition-opacity duration-500 ${
+                        className={`flex h-full flex-col text-center transition-opacity duration-500 ${
                             isNavActive ? "opacity-1" : "opacity-0"
                         }`}
                     >
                         {Object.entries(routes).map(([route, name]) => (
                             <a
-                                className="mb-3 block text-center text-xl font-bold uppercase"
+                                key={route}
+                                className="mb-3 block text-xl font-bold uppercase"
                                 href={route}
                             >
                                 {name}
                             </a>
                         ))}
+
+                        <Button
+                            className="mt-auto text-xl"
+                            loading={USER.logout.isLoading}
+                            onClick={USER.logout.execute}
+                        >
+                            Logout
+                        </Button>
                     </div>
                 </nav>
 

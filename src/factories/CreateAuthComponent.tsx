@@ -3,9 +3,15 @@ import { useGlobalState } from "../contexts/global/index";
 import { IUserResource } from "../services/auth/resources/user";
 
 const FallbackComponent: FC = () => (
-    <p>
-        Make sure to login <a href="#">here</a>.
-    </p>
+    <div className="flex h-full w-full flex-col justify-center bg-slate-600 text-center text-white">
+        <p className="text-4xl font-semibold">
+            Make sure to login{" "}
+            <a className="text-blue-600" href="/login">
+                here
+            </a>
+            .
+        </p>
+    </div>
 );
 
 export function CreateAuthComponent<Props extends object>(
