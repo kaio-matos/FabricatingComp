@@ -34,5 +34,3 @@ const SomeAuthenticatedComponent = createAuthComponent<{ title: string }>(
     }
 );
 ```
-
-### This is just a test.
